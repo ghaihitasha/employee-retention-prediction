@@ -19,8 +19,6 @@ The project emphasizes:
   - `0` → Employee stayed  
 
 
----
-
 ## Machine Learning Workflow
 
 ### 1. Data Ingestion
