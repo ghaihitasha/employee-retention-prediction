@@ -1,0 +1,6 @@
+__pycache__/
+.emp/
+.env
+.git
+.ipynb_checkpoints/
+*.pyc
