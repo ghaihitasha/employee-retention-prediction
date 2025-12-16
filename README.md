@@ -1,20 +1,15 @@
 # Employee Retention Prediction – End-to-End ML Project
 
-An end-to-end Machine Learning project that predicts whether an employee is likely to leave the company based on HR data.  
-This project demonstrates **production-grade ML engineering practices**, covering the full ML lifecycle from data ingestion to model deployment.
-
----
+This repository contains an end-to-end machine learning system that predicts whether an employee is likely to leave an organization based on historical HR data. The project is designed to closely mirror real-world ML workflows, covering everything from data preprocessing and model training to API deployment and Dockerization.
 
 ## Project Overview
 
-Employee attrition is a critical business problem. This project builds a classification model that predicts employee churn using features such as satisfaction level, evaluation score, workload, salary, and promotion history.
-
-The solution is designed with modular, scalable, and reusable components suitable for real-world deployment.
-
----
-
-
----
+Employee attrition is a critical challenge for organizations. This project builds a binary classification model that predicts employee churn (leave vs stay) and exposes the model via a REST API for real-time inference.
+The project emphasizes:
+- Modular and scalable ML pipeline design
+- Separation of training and inference logic
+- Production-style folder structure
+- Reproducibility and deployment readiness
 
 ## Dataset
 
@@ -23,36 +18,41 @@ The solution is designed with modular, scalable, and reusable components suitabl
   - `1` → Employee left  
   - `0` → Employee stayed  
 
-### Key Features
-- satisfaction_level  
-- last_evaluation  
-- number_project  
-- average_montly_hours  
-- time_spend_company  
-- Work_accident  
-- promotion_last_5years  
-- salary  
 
 ---
 
-## Models Used
+## Machine Learning Workflow
 
-### Baseline Model
-- Rule-based prediction using satisfaction threshold
+### 1. Data Ingestion
+- Loads raw HR employee data
+- Splits data into train and test sets
+- Saves intermediate datasets as artifacts
 
-### Machine Learning Models
-- Random Forest Classifier
-- XGBoost Classifier (**final model**)
+### 2. Data Transformation
+- Handles missing values
+- Encodes categorical variables (e.g., salary)
+- Ensures **training and inference feature consistency**
+- Saves preprocessing pipeline
 
-### Model Selection
-- GridSearchCV with 5-fold cross-validation
-- Evaluation metrics:
-  - Precision
-  - Recall
-  - F1-score
-  - Confusion Matrix
+### 3. Model Training
+- Trains multiple models:
+  - Random Forest
+  - XGBoost
+- Uses **GridSearchCV** for hyperparameter tuning
+- Selects best-performing model
+- Saves trained model as an artifact
 
----
+### 4. Model Evaluation
+- Classification Report
+- Confusion Matrix
+- Comparison against a baseline heuristic
+
+## Inference Pipeline
+
+The **prediction pipeline**:
+- Loads the trained model and preprocessor
+- Validates feature names and schema
+- Returns predictions for new employee data
 
 ## How to Run Locally (Without Docker)
 
@@ -94,8 +94,6 @@ API will be available at:
 http://127.0.0.1:8000
 ```
 
----
-
 ### Prediction API Usage
 
 #### Endpoint
@@ -130,8 +128,6 @@ Content-Type: application/json
 }
 ```
 
----
-
 ## Dockerized Deployment
 
 ### 1. Build Docker Image
@@ -148,5 +144,35 @@ Access the API at:
 ```bash
 http://localhost:8000/predict
 ```
+## Tech Stack
+
+### Programming & Core Libraries
+- **Python 3.9+** – Core programming language
+- **Pandas** – Data manipulation and preprocessing
+- **NumPy** – Numerical computations
+
+### Machine Learning
+- **scikit-learn** – Model training, evaluation, preprocessing pipelines
+- **XGBoost / RandomForest (if used)** – Classification model
+- **Joblib** – Model serialization
+
+### Model Engineering
+- **Custom ML Pipelines** – Modular design for training and inference
+- **Feature Engineering** – Encoding, scaling, and transformations
+- **Train/Test Split & Evaluation** – Accuracy, precision, recall, F1-score
+
+### Backend & API
+- **Flask** – REST API for serving predictions
+- **JSON** – Input/output format for prediction requests
+
+### MLOps & Deployment
+- **Docker** – Containerized application for consistent deployment
+- **Git & GitHub** – Version control and collaboration
+- **Virtual Environments (venv)** – Dependency isolation
+
+### Development & Testing
+- **Jupyter Notebook** – EDA and experimentation
+- **Postman / curl** – API testing
+- **VS Code / Terminal** – Development environment
 
 
