@@ -1,5 +1,11 @@
-emp/
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
 __pycache__/
 *.pyc
 .env
-artifacts/
+venv/
