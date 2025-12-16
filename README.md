@@ -16,7 +16,7 @@ The solution is designed with modular, scalable, and reusable components suitabl
 
 ---
 
-## 🧪 Dataset
+## Dataset
 
 - HR Employee Churn Dataset
 - Target variable: `left`  
@@ -35,7 +35,7 @@ The solution is designed with modular, scalable, and reusable components suitabl
 
 ---
 
-## 🤖 Models Used
+## Models Used
 
 ### Baseline Model
 - Rule-based prediction using satisfaction threshold
@@ -54,9 +54,10 @@ The solution is designed with modular, scalable, and reusable components suitabl
 
 ---
 
-## ⚙️ How to Run Locally (Without Docker)
+## How to Run Locally (Without Docker)
 
-### 1️⃣ Create virtual environment
+### Create virtual environment
 ```bash
 python -m venv emp
 source emp/bin/activate
+'''
