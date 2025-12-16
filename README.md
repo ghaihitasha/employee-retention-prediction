@@ -56,8 +56,97 @@ The solution is designed with modular, scalable, and reusable components suitabl
 
 ## How to Run Locally (Without Docker)
 
-### Create virtual environment
+### 1. Create virtual environment
 ```bash
 python -m venv emp
 source emp/bin/activate
 ```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Train the model
+```bash
+python -m src.pipeline.train_pipeline
+```
+
+This generates
+```bash
+artifacts/model.pkl
+artifacts/preprocessor.pkl
+```
+
+### 4. Test prediction pipeline
+```bash
+python test_prediction.py
+```
+
+---
+
+### Run the Flask API
+```bash
+python app.py
+```
+API will be available at:
+```bash
+http://127.0.0.1:8000
+```
+
+---
+
+### Prediction API Usage
+
+#### Endpoint
+```bash
+POST /predict
+```
+
+#### Headers
+```pgsql
+Content-Type: application/json
+```
+
+#### Request Body
+```json
+{
+  "satisfaction_level": 0.4,
+  "last_evaluation": 0.7,
+  "number_project": 3,
+  "average_montly_hours": 160,
+  "time_spend_company": 3,
+  "Work_accident": 0,
+  "promotion_last_5years": 0,
+  "salary": "low"
+}
+```
+
+#### Response
+```json
+{
+  "prediction": 1,
+  "label": "Likely to leave"
+}
+```
+
+---
+
+## Dockerized Deployment
+
+### 1. Build Docker Image
+```bash
+docker build -t employee-retention
+```
+
+### 2. Run Docker Container
+```bash
+docker run -p 8000:8000 employee-retention
+```
+
+Access the API at:
+```bash
+http://localhost:8000/predict
+```
+
+
